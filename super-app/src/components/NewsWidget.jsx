@@ -1,53 +1,83 @@
 import { useState, useEffect, useRef } from "react";
-import { fetchTopHeadlines } from "../services/apiServices";
 import "./NewsWidget.css";
 
-const ROTATION_INTERVAL = 3000; // 3 seconds (spec says 2, use 3 for UX)
+const MOCK_ARTICLES = [
+  {
+    title: "Global Tech Summit 2026 Unveils Next-Gen AI Breakthroughs",
+    description: "Leaders from top technology companies gathered to showcase revolutionary artificial intelligence tools that promise to reshape industries worldwide.",
+    source: { name: "Tech Today" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "Renewable Energy Hits Record High Across Asia Pacific",
+    description: "Solar and wind energy production reached an all-time high this quarter, with countries across Asia Pacific leading the green energy transition.",
+    source: { name: "Energy World" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "Scientists Discover New Deep-Sea Species in Pacific Ocean",
+    description: "Marine biologists have identified over 30 previously unknown species during a landmark deep-sea expedition, expanding our understanding of ocean biodiversity.",
+    source: { name: "Science Daily" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "Global Markets Rally as Inflation Data Shows Improvement",
+    description: "Stock markets around the world surged after new economic data indicated inflation is cooling faster than expected, boosting investor confidence.",
+    source: { name: "Financial Times" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "Space Agency Announces Crewed Mission to Mars by 2030",
+    description: "In a landmark announcement, the international space coalition confirmed plans to send the first crewed mission to Mars within the next four years.",
+    source: { name: "Space News" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "Breakthrough in Quantum Computing Achieves New Milestone",
+    description: "Researchers have demonstrated quantum supremacy at room temperature, a development that could accelerate the commercialization of quantum computers.",
+    source: { name: "Tech Review" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "New Study Links Mediterranean Diet to Longer Lifespan",
+    description: "A comprehensive 20-year study confirms that adherence to a Mediterranean diet significantly reduces the risk of chronic disease and extends life expectancy.",
+    source: { name: "Health Weekly" },
+    url: "#",
+    urlToImage: null,
+  },
+  {
+    title: "Electric Vehicle Sales Surpass Petrol Cars for First Time",
+    description: "For the first time in automotive history, electric vehicles outsold traditional petrol-powered cars globally, marking a major milestone in sustainable transport.",
+    source: { name: "Auto News" },
+    url: "#",
+    urlToImage: null,
+  },
+];
+
+const ROTATION_INTERVAL = 3000;
 
 const NewsWidget = () => {
-  const [articles, setArticles] = useState([]);
+  const [articles] = useState(MOCK_ARTICLES);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);
 
   useEffect(() => {
-    fetchNews();
-    return () => clearInterval(intervalRef.current);
-  }, []);
-
-  useEffect(() => {
-    if (articles.length === 0) return;
-    startRotation();
-    return () => clearInterval(intervalRef.current);
-  }, [articles, isPaused]);
-
-  const fetchNews = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await fetchTopHeadlines("general");
-      const filtered = data.filter((a) => a.title && a.title !== "[Removed]");
-      setArticles(filtered);
-    } catch {
-      setError("Unable to load news. Check your API key.");
-    } finally {
-      setLoading(false);
+    if (isPaused) {
+      clearInterval(intervalRef.current);
+      return;
     }
-  };
-
-  const startRotation = () => {
-    clearInterval(intervalRef.current);
-    if (isPaused) return;
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % articles.length);
     }, ROTATION_INTERVAL);
-  };
-
-  const goTo = (index) => {
-    setCurrentIndex(index);
-  };
+    return () => clearInterval(intervalRef.current);
+  }, [isPaused, articles.length]);
 
   const current = articles[currentIndex];
 
@@ -61,71 +91,29 @@ const NewsWidget = () => {
         <span className="widget-title">
           <span className="icon">📰</span> News Feed
         </span>
-        {articles.length > 0 && (
-          <span className="news-counter">
-            {currentIndex + 1} / {articles.length}
-          </span>
-        )}
+        <span className="news-counter">
+          {currentIndex + 1} / {articles.length}
+        </span>
       </div>
 
-      {loading && (
-        <div className="loading-container">
-          <div className="loading-spinner" />
-          <span>Fetching headlines...</span>
+      <div className="news-article animate-fade-in" key={currentIndex}>
+        <div className="news-body">
+          <div className="news-source">{current.source.name}</div>
+          <p className="news-title">{current.title}</p>
+          <p className="news-description">{current.description}</p>
         </div>
-      )}
+      </div>
 
-      {error && (
-        <div className="news-error">
-          <p>⚠ {error}</p>
-          <button className="btn btn-ghost" onClick={fetchNews} style={{ fontSize: "0.8rem", padding: "6px 12px" }}>
-            Retry
-          </button>
-        </div>
-      )}
-
-      {current && !loading && (
-        <div className="news-article animate-fade-in" key={currentIndex}>
-          {current.urlToImage && (
-            <div className="news-image-container">
-              <img
-                src={current.urlToImage}
-                alt={current.title}
-                className="news-image"
-                onError={(e) => { e.target.style.display = "none"; }}
-              />
-            </div>
-          )}
-          <div className="news-body">
-            <div className="news-source">{current.source?.name}</div>
-            <p className="news-title">{current.title}</p>
-            {current.description && (
-              <p className="news-description">{current.description}</p>
-            )}
-            <a
-              href={current.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="news-read-more"
-            >
-              Read more →
-            </a>
-          </div>
-        </div>
-      )}
-
-      {articles.length > 0 && (
-        <div className="news-dots">
-          {articles.slice(0, 10).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              className={`news-dot ${i === currentIndex ? "news-dot--active" : ""}`}
-              aria-label={`Article ${i + 1}`}
-            />
-          ))}
-        </div>
-      )}
+      <div className="news-dots">
+        {articles.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentIndex(i)}
+            className={`news-dot ${i === currentIndex ? "news-dot--active" : ""}`}
+            aria-label={`Article ${i + 1}`}
+          />
+        ))}
+      </div>
 
       {isPaused && <div className="news-paused-label">⏸ Paused</div>}
     </div>
