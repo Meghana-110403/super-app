@@ -49,7 +49,7 @@ export const fetchWeatherByCoords = async (lat, lon) => {
 export const fetchTopHeadlines = async (category = "general") => {
   try {
     const response = await newsClient.get(
-      `/top-headlines?category=${category}&lang=en&max=10&apikey=${API_KEYS.news}`
+      `/top-headlines?lang=en&max=10&apikey=${API_KEYS.news}`
     );
     return response.data.articles || [];
   } catch (error) {
