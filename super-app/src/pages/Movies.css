@@ -1,0 +1,125 @@
+.movies-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: 60px;
+}
+
+.movies-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: var(--color-bg-2);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.movies-nav__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.movies-hero {
+  text-align: center;
+  padding: 48px 32px 32px;
+}
+
+.movies-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #e8eaf6 30%, #6c63ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.movies-hero p {
+  color: var(--color-text-secondary);
+}
+
+.movies-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.movie-category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.category-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refresh-btn {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
+
+.movies-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+}
+
+.movies-row::-webkit-scrollbar {
+  height: 4px;
+}
+
+.no-results {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  padding: 20px 0;
+}
+
+.error-banner {
+  padding: 12px 16px;
+  background: var(--color-danger-dim);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--color-danger);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .movies-nav {
+    padding: 12px 16px;
+  }
+
+  .movies-content {
+    padding: 0 16px;
+  }
+
+  .movies-hero h1 {
+    font-size: 1.6rem;
+  }
+}

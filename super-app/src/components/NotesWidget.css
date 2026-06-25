@@ -1,0 +1,67 @@
+.notes-widget {
+  gap: 12px;
+}
+
+.notes-meta {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.notes-saved-badge {
+  font-size: 0.75rem;
+  color: var(--color-success);
+  background: var(--color-accent-2-dim);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+.notes-textarea {
+  flex: 1;
+  min-height: 160px;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  line-height: 1.65;
+  resize: none;
+  outline: none;
+  transition: border-color var(--transition-base);
+}
+
+.notes-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.notes-textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+.notes-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.notes-stats {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.notes-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.notes-btn {
+  padding: 6px 14px;
+  font-size: 0.82rem;
+}

@@ -1,0 +1,225 @@
+.register-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ===== ART PANEL ===== */
+.register-art {
+  position: relative;
+  background: linear-gradient(135deg, #1a1e2a 0%, #0d0f14 60%, #13161e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  overflow: hidden;
+}
+
+.register-art__content {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+}
+
+.register-art__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+  background: var(--color-accent-dim);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  padding: 10px;
+  border-radius: var(--radius-md);
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.register-art__headline {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #e8eaf6 30%, #6c63ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.register-art__sub {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.register-art__features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  width: fit-content;
+  transition: all var(--transition-base);
+}
+
+.feature-pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+  background: var(--color-accent-dim);
+}
+
+.register-art__bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(108, 99, 255, 0.12);
+  top: -100px;
+  right: -100px;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(0, 212, 170, 0.07);
+  bottom: -80px;
+  left: -80px;
+}
+
+/* ===== FORM PANEL ===== */
+.register-form-panel {
+  background: var(--color-bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+}
+
+.register-form-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.register-form-header {
+  margin-bottom: 32px;
+}
+
+.register-form-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.register-form-header p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+/* ===== STEP INDICATOR ===== */
+.register-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 32px;
+}
+
+.step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.step.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+  box-shadow: var(--shadow-accent);
+}
+
+.step-line {
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.step-label {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .register-page {
+    grid-template-columns: 1fr;
+  }
+
+  .register-art {
+    padding: 40px 24px;
+    min-height: 300px;
+  }
+
+  .register-art__headline {
+    font-size: 1.8rem;
+  }
+
+  .register-art__features {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .register-form-panel {
+    padding: 40px 24px;
+  }
+}

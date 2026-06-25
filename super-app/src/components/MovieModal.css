@@ -1,0 +1,249 @@
+.movie-modal {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.modal-close:hover {
+  background: var(--color-danger);
+}
+
+.movie-modal-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  max-height: 90vh;
+}
+
+/* ===== POSTER COL ===== */
+.movie-modal__poster-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+}
+
+.movie-modal__poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.movie-rating {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 10px;
+  background: rgba(255, 179, 71, 0.08);
+  border: 1px solid rgba(255, 179, 71, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.rating-star {
+  color: var(--color-warning);
+  font-size: 1.1rem;
+}
+
+.rating-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-warning);
+}
+
+.rating-label {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.movie-extra-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rating-source {
+  color: var(--color-text-muted);
+}
+
+.rating-val {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+/* ===== INFO COL ===== */
+.movie-modal__info-col {
+  padding: 28px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.movie-modal__header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movie-modal__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.movie-modal__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.movie-runtime {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* ===== SECTIONS ===== */
+.movie-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.genre-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.genre-tag {
+  padding: 4px 10px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.movie-plot {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+/* ===== CREW ===== */
+.movie-crew {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--color-bg-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.crew-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.crew-role {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.crew-name {
+  font-size: 0.85rem;
+  color: var(--color-text-primary);
+}
+
+/* ===== AWARDS ===== */
+.movie-awards {
+  font-size: 0.82rem;
+  color: var(--color-warning);
+  padding: 10px 14px;
+  background: rgba(255, 179, 71, 0.06);
+  border: 1px solid rgba(255, 179, 71, 0.15);
+  border-radius: var(--radius-md);
+  line-height: 1.5;
+}
+
+.modal-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 48px;
+  color: var(--color-danger);
+  text-align: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .movie-modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  .movie-modal__poster-col {
+    padding: 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .movie-modal__poster {
+    width: 100px;
+    flex-shrink: 0;
+  }
+
+  .movie-modal__info-col {
+    padding: 20px;
+  }
+
+  .movie-modal__title {
+    font-size: 1.2rem;
+  }
+}

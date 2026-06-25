@@ -1,0 +1,133 @@
+.news-widget {
+  gap: 12px;
+}
+
+.news-counter {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-2);
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+}
+
+.news-article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.news-image-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 140px;
+  background: var(--color-bg-2);
+  flex-shrink: 0;
+}
+
+.news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.news-image:hover {
+  transform: scale(1.03);
+}
+
+.news-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.news-source {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-light);
+}
+
+.news-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-description {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-read-more {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.news-read-more:hover {
+  color: var(--color-accent-light);
+}
+
+/* ===== DOTS ===== */
+.news-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.news-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border-hover);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.news-dot--active {
+  background: var(--color-accent);
+  width: 18px;
+  border-radius: 3px;
+}
+
+.news-paused-label {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-top: -8px;
+}
+
+.news-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  padding: 16px;
+  text-align: center;
+}
