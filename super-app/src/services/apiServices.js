@@ -1,9 +1,9 @@
 import axios from "axios";
 
-// ===== API KEYS (replace with your actual keys) =====
+// ===== API KEYS =====
 export const API_KEYS = {
   weather: import.meta.env.VITE_WEATHER_API_KEY || "YOUR_OPENWEATHERMAP_KEY",
-  news: import.meta.env.VITE_NEWS_API_KEY || "YOUR_NEWSAPI_KEY",
+  news: import.meta.env.VITE_NEWS_API_KEY || "YOUR_GNEWS_KEY",
   movie: import.meta.env.VITE_MOVIE_API_KEY || "YOUR_OMDB_KEY",
 };
 
@@ -13,7 +13,7 @@ const weatherClient = axios.create({
 });
 
 const newsClient = axios.create({
-  baseURL: "https://newsapi.org/v2",
+  baseURL: "https://gnews.io/api/v4",
 });
 
 const movieClient = axios.create({
@@ -45,11 +45,11 @@ export const fetchWeatherByCoords = async (lat, lon) => {
   }
 };
 
-// ===== NEWS =====
+// ===== NEWS (GNews API - supports CORS) =====
 export const fetchTopHeadlines = async (category = "general") => {
   try {
     const response = await newsClient.get(
-      `/top-headlines?category=${category}&language=en&pageSize=10&apiKey=${API_KEYS.news}`
+      `/top-headlines?category=${category}&lang=en&max=10&apikey=${API_KEYS.news}`
     );
     return response.data.articles || [];
   } catch (error) {
