@@ -3,7 +3,7 @@
 A multi-feature React dashboard combining user registration, category selection, live weather, rotating news, countdown timer, persistent notes, and movie recommendations — all in one personalized app.
 
 ## Live Demo
-> Add your deployment URL here after deploying to Vercel/Netlify
+> https://super-app-two-delta.vercel.app/
 
 ## Features
 
